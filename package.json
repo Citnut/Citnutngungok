@@ -1,0 +1,27 @@
+{
+  "name": "citnutbot",
+  "version": "1.0.0",
+  "description": "adu j ngu vay",
+  "main": "index.js",
+  "scripts": {
+    "test": "test",
+    "start": "node app"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Citnut/DCngungok.git"
+  },
+  "keywords": [
+    "DCbot"
+  ],
+  "author": "Citnut",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/Citnut/DCngungok/issues"
+  },
+  "homepage": "https://github.com/Citnut/DCngungok#readme",
+  "dependencies": {
+    "discord.js": "^12.5.1",
+    "axios": "^0.21.1"
+  }
+}
