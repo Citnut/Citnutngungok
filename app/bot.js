@@ -2,7 +2,6 @@ var config = require("../config.json");
 var prefix = config.prefix;
 var Discord = require("discord.js");
 var bot = new Discord.Client();
-var logger = require("node-color-log");
 var axios = require("axios");
 
 
