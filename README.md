@@ -20,7 +20,7 @@ npm run dev
 
 ## for user
 
-chạy lệnh này để 1 lần để dịch code sang js nhé
+chạy lệnh này để dịch code sang js nhé (nếu sửa code nhiều nên cài ts-node và chạy bằng lệnh "npm run dev" cho mượt )
 
 ```
 npm run build
