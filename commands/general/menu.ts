@@ -1,5 +1,5 @@
 import { EmbedBuilder, SlashCommandBuilder } from "discord.js"
-import Command from "../structure/Command.js"
+import Command from "../../structure/Command.js"
 const menu = (client: any, result: any) => {
     let str: Array<string> = []
     client.application?.commands.cache.each((e: any) => str.push(e.name))
@@ -15,19 +15,20 @@ export default new Command({
             .setDescription("tên của 1 câu lệnh bạn chưa biết dùng")
             .setRequired(false)
         ).toJSON(),
-    execute: async ({ client, interaction }) => {
+    async execute({ client, interaction }) {
+        const msg = await interaction.deferReply({ ephemeral: true, fetchReply: true })
         const data = interaction.options.getString("name")?.toString()
         let result = new EmbedBuilder().setColor("Random")
 
-        if (!data) return interaction.reply({ embeds: [menu(client, result)] })
+        if (!data) return msg.edit({ embeds: [menu(client, result)] })
 
         let command = client.commands.get(data)
-        if (!command) return interaction.reply({ embeds: [menu(client, result)] })
+        if (!command) return msg.edit({ embeds: [menu(client, result)] })
 
         result
-        .setTitle(command.config.name)
-        .setDescription(`author: ${command.config.author}\ndescription: ${command.config.description}`)
-    
-        return interaction.reply({embeds: [result]})
+            .setTitle(command.config.name)
+            .setDescription(`author: ${command.config.author}\ndescription: ${command.config.description}`)
+
+        return msg.edit({ embeds: [result] })
     }
 })

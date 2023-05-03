@@ -3,7 +3,7 @@ import {
     Message,
     GuildMember,
     CommandInteractionOptionResolver,
-    RESTPostAPIChatInputApplicationCommandsJSONBody
+    ApplicationCommandDataResolvable
 } from "discord.js"
 import CitnutClient from "./Client.js"
 
@@ -19,7 +19,8 @@ interface CommandArgs {
 }
 
 interface CommandType {
-    config: RESTPostAPIChatInputApplicationCommandsJSONBody
+    author?: string
+    config: ApplicationCommandDataResolvable
     execute({ client, interaction }: CommandArgs): Promise<any>
 }
 /**
@@ -41,9 +42,11 @@ interface CommandType {
  * @link https://discordjs.guide/creating-your-bot/slash-commands.html#individual-command-files
  */
 export default class {
+    public readonly author: string = "Citnut"
     public readonly config: CommandType["config"]
     public readonly execute: CommandType["execute"]
-    constructor({ config, execute }: CommandType) {
+    constructor({ author, config, execute }: CommandType) {
+        this.author = author ? author : "Citnut"
         this.config = config
         this.execute = execute
     }

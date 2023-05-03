@@ -1,14 +1,26 @@
 import { existsSync, writeFileSync } from "node:fs"
+import botconfig from "../config.json" assert {type: "json"}
 
+/**
+ * Check if a file exists and create a new file if desired
+ * @param path String
+ * @param defaultData Input data if you want to create a new file
+ * @returns If the file exists, it will return true and vice versa
+ */
 function checkfile(path: string, defaultData: undefined | any = false) {
     if (existsSync(path)) return true
-    else {
-        if (!defaultData) return false
-        writeFileSync(path, defaultData)
-    }
+    else if (defaultData) writeFileSync(path, defaultData)
     return false
 }
 
+class Language {
+
+    // public static get(): string {
+
+    // }
+}
+
 export {
-    checkfile
+    checkfile,
+    Language
 }
