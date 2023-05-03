@@ -1,27 +1,18 @@
 import {
     CommandInteraction,
-    Message,
-    GuildMember,
-    CommandInteractionOptionResolver,
-    ApplicationCommandDataResolvable
+    type SlashCommandSubcommandBuilder,
 } from "discord.js"
 import CitnutClient from "./Client.js"
 
-interface ExtendCommandInteraction extends CommandInteraction {
-    message: Message
-    member: GuildMember
-    options: CommandInteractionOptionResolver
-}
-
-interface CommandArgs {
+type CommandArgs = {
     client: CitnutClient
-    interaction: ExtendCommandInteraction
+    interaction: CommandInteraction
 }
 
-interface CommandType {
+export type CommandType = {
     author?: string
-    config: ApplicationCommandDataResolvable
-    execute({ client, interaction }: CommandArgs): Promise<any>
+    config: SlashCommandSubcommandBuilder
+    execute: ({ client, interaction }: CommandArgs) => Promise<any> | any;
 }
 /**
  * @example 
@@ -41,7 +32,7 @@ interface CommandType {
  * ```
  * @link https://discordjs.guide/creating-your-bot/slash-commands.html#individual-command-files
  */
-export default class {
+export class Command {
     public readonly author: string = "Citnut"
     public readonly config: CommandType["config"]
     public readonly execute: CommandType["execute"]
