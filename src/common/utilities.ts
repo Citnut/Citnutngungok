@@ -1,5 +1,4 @@
-import { existsSync, writeFileSync } from "node:fs"
-import botconfig from "../config.json" assert {type: "json"}
+import { existsSync, writeFileSync } from "fs"
 
 /**
  * Check if a file exists and create a new file if desired

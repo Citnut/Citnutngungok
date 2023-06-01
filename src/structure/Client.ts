@@ -1,6 +1,7 @@
 import { Client, Collection, GatewayIntentBits, Partials } from "discord.js"
+import { CommandType } from "./Command"
 export default class CitnutClient extends Client {
-    public commands: Collection<any, any> = new Collection()
+    public commands: Collection<string, CommandType> = new Collection()
     constructor(){
         super({
             intents: [
